@@ -7,7 +7,7 @@
   $mainIngredientID = $_POST["mainIngredientID"];
 
     if($_FILES['file']["error"]){
-      echo "<script>alert(\"New record created successfully.\")
+      echo "<script>alert(\"Add food Error!!.\")
       window.location.href=\"..addFood.php\";</script>";
     }else {
       $select_pic = "SELECT `ID` FROM `Foods` ORDER BY `ID` DESC LIMIT 1";

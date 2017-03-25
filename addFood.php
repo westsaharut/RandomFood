@@ -74,7 +74,7 @@ if($_SESSION["Type"]=="Admin"){
 													if($result->num_rows > 0) {
 														while($row = $result->fetch_assoc()){
 												?>
-															<option value="<?=$row["ID"]?>"><?= $row["Name"]?></option>
+															<option value="<?=$row["ID"]?>"><?= $row["CategoryName"]?></option>
 												<?php
 														}
 													}
@@ -92,7 +92,7 @@ if($_SESSION["Type"]=="Admin"){
 													if($result->num_rows > 0) {
 														while($row = $result->fetch_assoc()){
 												?>
-															<option value="<?=$row["ID"]?>"><?= $row["Name"]?></option>
+															<option value="<?=$row["ID"]?>"><?= $row["CourseName"]?></option>
 												<?php
 														}
 													}
@@ -110,7 +110,7 @@ if($_SESSION["Type"]=="Admin"){
 													if($result->num_rows > 0) {
 														while($row = $result->fetch_assoc()){
 												?>
-															<option value="<?=$row["ID"]?>"><?= $row["Name"]?></option>
+															<option value="<?=$row["ID"]?>"><?= $row["MainIngredientName"]?></option>
 												<?php
 														}
 													}
