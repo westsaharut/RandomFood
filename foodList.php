@@ -28,11 +28,11 @@
                   <tr>
                     <th>#</th>
                     <th>ชื่อ</th>
+                    <th>รูปภาพ</th>
                     <th>คำบรรยาย</th>
                     <th>ชนิด</th>
                     <th>ชุดอาหาร</th>
                     <th>ส่วนประกอบหลัก</th>
-                    <th>รูปภาพ</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -49,6 +49,7 @@
                         <tr>
                           <td><?= $i ?></td>
                           <td><?= $row["FoodName"] ?></td>
+                          <td><img src="<?= $row["Picture"] ?>" width="200" high="100"></td>
                           <td>
                             <?php
                               $string = strip_tags($row["Description"]);
@@ -62,7 +63,6 @@
                           <td><?= $row["CategoryName"] ?></td>
                           <td><?= $row["CourseName"] ?></td>
                           <td><?= $row["MainIngredientName"] ?></td>
-                          <td><img src="<?= $row["Picture"] ?>" width="200" high="100"></td>
                         </tr>
                   <?php
                         $i++;

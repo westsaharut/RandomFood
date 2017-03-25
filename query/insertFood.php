@@ -26,11 +26,11 @@
           $check = getimagesize($_FILES["file"]["tmp_name"]);
           if($check !== false) {
             if(move_uploaded_file($_FILES["file"]["tmp_name"],"../assets/img/".$pic_name)){
-              $sql = "INSERT INTO `Foods` (`Name`, `Description`, `Picture`, `CategoryID`, `CourseID`, `MainIngredientID`)
+              $sql = "INSERT INTO `Foods` (`FoodName`, `Description`, `Picture`, `CategoryID`, `CourseID`, `MainIngredientID`)
                       VALUES ('" . $name . "', '" . $description . "', '" . $target_file . "', '" . $categoryID ."', ' " . $courseID . "', '" . $mainIngredientID ."')";
                 if($conn->query($sql) === TRUE){
                   echo "<script>alert(\"New record created successfully.\")
-                  window.location.href=\"foodList.php\";</script>";
+                  window.location.href=\"../foodList.php\";</script>";
                 }else {
                     echo "Error: " . $sql . "<br>" . $conn->error;
                 }
