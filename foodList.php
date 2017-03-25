@@ -23,21 +23,22 @@
     <div class="col-md-12">
       <div class="panel panel-default">
             <div class="panel-body">
-              <table class="table table-striped table-hover" id="table1">
+              <table class="table table-bordered table-hover" id="table1">
                 <thead>
                   <tr>
-                    <th>#</th>
+                    <th align="center">#</th>
                     <th>ชื่อ</th>
                     <th>รูปภาพ</th>
                     <th>คำบรรยาย</th>
                     <th>ชนิด</th>
                     <th>ชุดอาหาร</th>
                     <th>ส่วนประกอบหลัก</th>
+                    <th>แก้ไข</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
-                    $sql = "SELECT * FROM `Foods`, `Categories`, `Course`, `MainIngredient` WHERE `Foods`.`CategoryID` = `Categories`.`ID`
+                    $sql = "SELECT *, `Foods`.`ID` AS `FoodID` FROM `Foods`, `Categories`, `Course`, `MainIngredient` WHERE `Foods`.`CategoryID` = `Categories`.`ID`
                             AND `Foods`.`CourseID` = `Course`.`ID`
                             AND `Foods`.`MainIngredientID` = `MainIngredient`.`ID`
                             ORDER BY `FoodName` DESC";
@@ -49,8 +50,8 @@
                         <tr>
                           <td><?= $i ?></td>
                           <td><?= $row["FoodName"] ?></td>
-                          <td><img src="<?= $row["Picture"] ?>" width="200" high="100"></td>
-                          <td>
+                          <td><img src="<?= $row["Picture"] ?>" width="150" high="50"></td>
+                          <td width="300px">
                             <?php
                               $string = strip_tags($row["Description"]);
               								if (strlen($string) > 400) {
@@ -63,6 +64,10 @@
                           <td><?= $row["CategoryName"] ?></td>
                           <td><?= $row["CourseName"] ?></td>
                           <td><?= $row["MainIngredientName"] ?></td>
+                          <td width="100px">
+                            <a href="editFood.php?id=<?= $row["FoodID"] ?>" class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                            <a href="query/deleteFood.php?id=<?= $row["FoodID"] ?>" class="btn btn-danger btn-sm" onClick="return confirm('Do you want to delete?');"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                          </td>
                         </tr>
                   <?php
                         $i++;

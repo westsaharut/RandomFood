@@ -2,7 +2,11 @@
 		require "header.php";
 		require "menu.php";
 		require("config/connection.php");
-if($_SESSION["Type"]=="Admin"){
+if($_SESSION["Type"]=="Admin" && $_GET["id"]){
+		$id = $_GET["id"];
+		$sql = "SELECT * FROM `Foods` WHERE `ID` = " . $id;
+		$result = $conn->query($sql);
+	  $row = $result->fetch_assoc();
 ?>
 	<script>
 	function checkspace(){
@@ -32,9 +36,7 @@ if($_SESSION["Type"]=="Admin"){
 			return false;
 		}
 		if(document.form.file.value==""){
-			alert("Please input image.");
-			document.form.file.focus();
-			return false;
+			return true;
 		}else{
 			var file=document.form.file.value;
 			var patt =/(.jpeg|.jpg|.png|.JPG|.PNG)/;
@@ -52,23 +54,27 @@ if($_SESSION["Type"]=="Admin"){
 		<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Add Food</h1>
+					<h1 class="page-header">Edit Food</h1>
 				</div>
 				<div class="col-md-12">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<form action="query/insertFood.php" class="form-horizontal" method="post" name="form" enctype="multipart/form-data" multiple="multiple" onSubmit="return checkspace();">
+							<div class="col-md-2">
+									<img src="<?=$row["Picture"]?>" width="250px">
+							</div>
+							<form action="query/updateFood.php" class="form-horizontal" method="post" name="form" enctype="multipart/form-data" multiple="multiple" onSubmit="return checkspace();">
 								<fieldset>
 									<div class="form-group">
 										<label for="name" class="col-lg-3 control-label">ชื่อ :</label>
 										<div class="col-lg-3">
-											<input name="name" type="text" class="form-control" id="name" placeholder="Enter name." autofocus>
+											<input name="name" type="text" class="form-control" id="name" placeholder="Enter name." value="<?=$row["FoodName"]?>" autofocus>
+											<input type="hidden" name="id" value="<?=$id?>">
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="description" class="col-lg-3 control-label">คำบรรยาย :</label>
 										<div class="col-lg-3">
-											<textarea name="description" rows="4" cols="60" placeholder="Enter description."></textarea>
+											<textarea name="description" rows="4" cols="60" placeholder="Enter description."><?=$row["Description"]?></textarea>
 										</div>
 									</div>
 									<div class="form-group">
@@ -76,13 +82,19 @@ if($_SESSION["Type"]=="Admin"){
 										<div class="col-lg-6">
 											<select name="categoryID" id="categoryID">
 												<?php
-													$sql = "SELECT * FROM `Categories`";
-													$result = $conn->query($sql);
-													if($result->num_rows > 0) {
-														while($row = $result->fetch_assoc()){
+													$sqlCategory = "SELECT * FROM `Categories`";
+													$resultCategory = $conn->query($sqlCategory);
+													if($resultCategory->num_rows > 0) {
+														while($rowCategory = $resultCategory->fetch_assoc()){
+															if($row["CategoryID"]==$rowCategory["ID"]){
 												?>
-															<option value="<?=$row["ID"]?>"><?= $row["CategoryName"]?></option>
+																<option value="<?=$rowCategory["ID"]?>" selected><?= $rowCategory["CategoryName"]?></option>
 												<?php
+															}else{
+												?>
+																<option value="<?=$rowCategory["ID"]?>"><?= $rowCategory["CategoryName"]?></option>
+												<?php
+															}
 														}
 													}
 												?>
@@ -94,13 +106,19 @@ if($_SESSION["Type"]=="Admin"){
 										<div class="col-lg-6">
 											<select name="courseID" id="courseID">
 												<?php
-													$sql = "SELECT * FROM `Course`";
-													$result = $conn->query($sql);
-													if($result->num_rows > 0) {
-														while($row = $result->fetch_assoc()){
+													$sqlCourseName = "SELECT * FROM `Course`";
+													$resultCourseName = $conn->query($sqlCourseName);
+													if($resultCourseName->num_rows > 0) {
+														while($rowCourse = $resultCourseName->fetch_assoc()){
+															if($row["CourseID"]==$rowCourse["ID"]){
 												?>
-															<option value="<?=$row["ID"]?>"><?= $row["CourseName"]?></option>
+																<option value="<?=$rowCourse["ID"]?>" selected=""><?= $rowCourse["CourseName"]?></option>
 												<?php
+															}else{
+												?>
+																<option value="<?=$rowCourse["ID"]?>"><?= $rowCourse["CourseName"]?></option>
+												<?php
+															}
 														}
 													}
 												?>
@@ -112,13 +130,19 @@ if($_SESSION["Type"]=="Admin"){
 										<div class="col-lg-6">
 											<select name="mainIngredientID" id="mainIngredientID">
 												<?php
-													$sql = "SELECT * FROM `MainIngredient`";
-													$result = $conn->query($sql);
-													if($result->num_rows > 0) {
-														while($row = $result->fetch_assoc()){
+													$sqlMainIngredient = "SELECT * FROM `MainIngredient`";
+													$resultMainIngredient = $conn->query($sqlMainIngredient);
+													if($resultMainIngredient->num_rows > 0) {
+														while($rowMainIngredient = $resultMainIngredient->fetch_assoc()){
+															if($row["MainIngredientID"]==$rowMainIngredient["ID"]){
 												?>
-															<option value="<?=$row["ID"]?>"><?= $row["MainIngredientName"]?></option>
+																<option value="<?=$rowMainIngredient["ID"]?>" selected=""><?= $rowMainIngredient["MainIngredientName"]?></option>
 												<?php
+															}else{
+												?>
+																<option value="<?=$rowMainIngredient["ID"]?>"><?= $rowMainIngredient["MainIngredientName"]?></option>
+												<?php
+															}
 														}
 													}
 												?>
