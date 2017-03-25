@@ -47,7 +47,7 @@
 								<div class="form-group">
 									<div class="col-lg-10 col-lg-offset-5">
 									<button type="submit" class="btn btn-info btn-sm">Submit</button>
-									<a href="index.php" class="btn btn-primary btn-sm">Animals</a>
+									<a href="index.php" class="btn btn-success btn-sm">Home</a>
 									</div>
 								</div>
 							</fieldset>

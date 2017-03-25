@@ -2,6 +2,7 @@
   require "header.php";
   require "menu.php";
   require("config/connection.php");
+  if($_SESSION["Tyepe"]=="Admin"){
 ?>
 <script>
   $(document).ready(function() {
@@ -26,14 +27,20 @@
               <table class="table table-bordered table-hover" id="table1">
                 <thead>
                   <tr>
-                    <th align="center">#</th>
+                    <th>#</th>
                     <th>ชื่อ</th>
                     <th>รูปภาพ</th>
                     <th>คำบรรยาย</th>
                     <th>ชนิด</th>
                     <th>ชุดอาหาร</th>
                     <th>ส่วนประกอบหลัก</th>
-                    <th>แก้ไข</th>
+                    <?php
+                      if($_SESSION["Type"]=="Admin"){
+                    ?>
+                        <th>แก้ไข</th>
+                    <?php
+                      }
+                    ?>
                   </tr>
                 </thead>
                 <tbody>
@@ -49,9 +56,9 @@
                   ?>
                         <tr>
                           <td><?= $i ?></td>
-                          <td><?= $row["FoodName"] ?></td>
-                          <td><img src="<?= $row["Picture"] ?>" width="150" high="50"></td>
-                          <td width="300px">
+                          <td align="center"><?= $row["FoodName"] ?></td>
+                          <td align="center"><img src="<?= $row["Picture"] ?>" width="150" high="50"></td>
+                          <td width="250px">
                             <?php
                               $string = strip_tags($row["Description"]);
               								if (strlen($string) > 400) {
@@ -61,13 +68,19 @@
                               echo $string;
                             ?>
                           </td>
-                          <td><?= $row["CategoryName"] ?></td>
-                          <td><?= $row["CourseName"] ?></td>
-                          <td><?= $row["MainIngredientName"] ?></td>
-                          <td width="100px">
-                            <a href="editFood.php?id=<?= $row["FoodID"] ?>" class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                            <a href="query/deleteFood.php?id=<?= $row["FoodID"] ?>" class="btn btn-danger btn-sm" onClick="return confirm('Do you want to delete?');"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                          </td>
+                          <td align="center"><?= $row["CategoryName"] ?></td>
+                          <td align="center"><?= $row["CourseName"] ?></td>
+                          <td align="center"><?= $row["MainIngredientName"] ?></td>
+                          <?php
+                            if($_SESSION["Type"]=="Admin"){
+                          ?>
+                              <td width="100px" align="center">
+                                <a href="editFood.php?id=<?= $row["FoodID"] ?>" class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a href="query/deleteFood.php?id=<?= $row["FoodID"] ?>" class="btn btn-danger btn-sm" onClick="return confirm('Do you want to delete?');"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                              </td>
+                          <?php
+                            }
+                          ?>
                         </tr>
                   <?php
                         $i++;
@@ -82,6 +95,9 @@
   </div><!--/.row-->
 </div>	<!--/.main-->
 
-<?php require"footer.php" ;?>
+<?php
+    require"footer.php";
+  } 
+?>
 </body>
 </html>
