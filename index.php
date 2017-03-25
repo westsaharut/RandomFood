@@ -64,7 +64,7 @@
                       if($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()){
                     ?>
-                          <h4><label><input type="checkbox" name="categories[]" id="categories<?=$row["ID"]?>" value="<?=$row["ID"]?>">  <?=$row["Name"]?></label></h4>
+                          <h4><label><input type="checkbox" name="categories[]" id="categories<?=$row["ID"]?>" value="<?=$row["ID"]?>">  <?=$row["CategoryName"]?></label></h4>
                     <?php
                           $i++;
                         }
@@ -80,7 +80,7 @@
                       if($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()){
                     ?>
-                          <h4><label><input type="checkbox" name="ingredient[]" id="ingredient<?=$row["ID"]?>" value="<?=$row["ID"]?>">  <?=$row["Name"]?></label></h4>
+                          <h4><label><input type="checkbox" name="ingredient[]" id="ingredient<?=$row["ID"]?>" value="<?=$row["ID"]?>">  <?=$row["MainIngredientName"]?></label></h4>
                     <?php
                           $i++;
                         }
@@ -96,7 +96,7 @@
                       if($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()){
                     ?>
-                          <h4><label><input type="checkbox" name="course[]" id="course<?=$row["ID"]?>" value="<?=$row["ID"]?>">  <?=$row["Name"]?></label></h4>
+                          <h4><label><input type="checkbox" name="course[]" id="course<?=$row["ID"]?>" value="<?=$row["ID"]?>">  <?=$row["CourseName"]?></label></h4>
                     <?php
                           $i++;
                         }
