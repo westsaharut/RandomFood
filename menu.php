@@ -64,6 +64,7 @@
 					}else if($_SESSION["Type"] == "User"){
 			?>
 						<li><a href="historyList.php"><i class="fa fa-list-alt" aria-hidden="true"></i> &nbsp;&nbsp; History List</a></li>
+						<li><a href="historyGraph.php"><i class="fa fa-bar-chart" aria-hidden="true"></i> &nbsp;&nbsp; History Graph</a></li>
 			<?php
 					}
 				}

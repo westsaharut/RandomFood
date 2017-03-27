@@ -6,11 +6,12 @@
   $categoryID = $_POST["categoryID"];
   $courseID = $_POST["courseID"];
   $mainIngredientID = $_POST["mainIngredientID"];
+  $calorie = $_POST["calorie"];
 
     if($_FILES['file']["error"]){
       $sql = "UPDATE `Foods` SET `FoodName`='" . $name . "',`Description`='" . $description .
-             "',`CategoryID`='" . $categoryID . "',`CourseID`='" . $courseID ."',`MainIngredientID`= " . $mainIngredientID .
-             " WHERE `ID` = " . $id;
+             "',`CategoryID`='" . $categoryID . "',`CourseID`='" . $courseID ."',`MainIngredientID`= " . $mainIngredientID . ", `Calorie`='" . $calorie .
+             "' WHERE `ID` = " . $id;
        if($conn->query($sql) === TRUE){
          echo "<script>alert(\"New record created successfully.\")
          window.location.href=\"../foodList.php\";</script>";
@@ -34,7 +35,7 @@
           if($check !== false) {
             if(move_uploaded_file($_FILES["file"]["tmp_name"],"../assets/img/".$pic_name)){
               $sql = "UPDATE `Foods` SET `FoodName`='" . $name . "',`Description`='" . $description .
-                     "',`CategoryID`='" . $categoryID . "',`CourseID`='" . $courseID ."',`MainIngredientID`= " . $mainIngredientID . ",`Picture`='" . $target_file .
+                     "',`CategoryID`='" . $categoryID . "',`CourseID`='" . $courseID ."',`MainIngredientID`= " . $mainIngredientID . ",`Picture`='" . $target_file . ", `Calorie`='" . $calorie .
                      "' WHERE `ID` = " . $id;
                 if($conn->query($sql) === TRUE){
                   echo "<script>alert(\"New record created successfully.\")

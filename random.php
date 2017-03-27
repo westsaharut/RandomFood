@@ -50,30 +50,33 @@
   <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-body">
-        <?php
-            $rand = rand(0,count($array)-1);
-            $sqlShow = "SELECT * FROM `Foods` WHERE `ID` = " . $array[$rand];
-            $result = $conn->query($sqlShow);
-            if($result->num_rows > 0) {
-              if($row = $result->fetch_assoc()){
-        ?>
-                <div class="col-md-4">
-                  <img src="<?= $row["Picture"] ?>" width="350px" height="250px">
-                </div>
-                <div class="col-md-8">
-                  <h1><?= $row["Name"] ?></h1>
-                  <h4><?= $row["Description"] ?></h4>
+        <form action="query/insertHistory.php" class="form-horizontal" method="post" name="form2">
+          <?php
+              $rand = rand(0,count($array)-1);
+              $sqlShow = "SELECT * FROM `Foods` WHERE `ID` = " . $array[$rand];
+              $result = $conn->query($sqlShow);
+              if($result->num_rows > 0) {
+                if($row = $result->fetch_assoc()){
+          ?>
+                  <input type="hidden" name="foodID" value="<?=$row["ID"]?>">
+                  <div class="col-md-4">
+                    <img src="<?= $row["Picture"] ?>" width="350px" height="250px">
+                  </div>
+                  <div class="col-md-8">
+                    <h1><?= $row["FoodName"] ?></h1>
+                    <h4><?= $row["Description"] ?></h4>
 
-                </div>
-        <?php
+                  </div>
+          <?php
+                }
               }
-            }
-        ?>
-        <div class="form-group">
-          <div class="col-lg-9 col-lg-offset-5">
-            <button id="btn1" type="button" class="btn btn-success btn-sm" name="button">Eat it!</button>
+          ?>
+          <div class="form-group">
+            <div class="col-lg-9 col-lg-offset-5">
+              <button type="submit" class="btn btn-success btn-sm" onClick="return confirm('คุณต้องการเพิ่มเมนูอาหารเข้าสู่ประวัติของคุณ ?');">Eat it!</button>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>

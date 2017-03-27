@@ -5,6 +5,7 @@
   $categoryID = $_POST["categoryID"];
   $courseID = $_POST["courseID"];
   $mainIngredientID = $_POST["mainIngredientID"];
+  $calorie = $_POST["calorie"];
 
     if($_FILES['file']["error"]){
       echo "<script>alert(\"Add food Error!!.\")
@@ -26,8 +27,8 @@
           $check = getimagesize($_FILES["file"]["tmp_name"]);
           if($check !== false) {
             if(move_uploaded_file($_FILES["file"]["tmp_name"],"../assets/img/".$pic_name)){
-              $sql = "INSERT INTO `Foods` (`FoodName`, `Description`, `Picture`, `CategoryID`, `CourseID`, `MainIngredientID`)
-                      VALUES ('" . $name . "', '" . $description . "', '" . $target_file . "', '" . $categoryID ."', ' " . $courseID . "', '" . $mainIngredientID ."')";
+              $sql = "INSERT INTO `Foods` (`FoodName`, `Description`, `Picture`, `CategoryID`, `CourseID`, `MainIngredientID`, `Calorie`)
+                      VALUES ('" . $name . "', '" . $description . "', '" . $target_file . "', '" . $categoryID ."', ' " . $courseID . "', '" . $mainIngredientID . "', '" . $calorie . "')";
                 if($conn->query($sql) === TRUE){
                   echo "<script>alert(\"New record created successfully.\")
                   window.location.href=\"../foodList.php\";</script>";

@@ -16,6 +16,11 @@ if($_SESSION["Type"]=="Admin"){
 			document.form.description.focus();
 			return false;
 		}
+		if(document.form.calorie.value == ""){
+			alert("Please input food calorie");
+			document.form.calorie.focus();
+			return false;
+		}
 	  if(document.form.categoryID.value == ""){
 	    alert("Please input categoryID");
 			document.form.categoryID.focus();
@@ -47,8 +52,6 @@ if($_SESSION["Type"]=="Admin"){
 		document.form.submit();
 	}
 	</script>
-	</head>
-	<body>
 		<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 			<div class="row">
 				<div class="col-lg-12">
@@ -69,6 +72,12 @@ if($_SESSION["Type"]=="Admin"){
 										<label for="description" class="col-lg-3 control-label">คำบรรยาย :</label>
 										<div class="col-lg-3">
 											<textarea name="description" rows="4" cols="60" placeholder="Enter description."></textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="calorie" class="col-lg-3 control-label">แคลอรี่ :</label>
+										<div class="col-lg-3">
+											<input name="calorie" type="text" class="form-control" id="calorie" placeholder="Enter calorie.">
 										</div>
 									</div>
 									<div class="form-group">
@@ -134,7 +143,7 @@ if($_SESSION["Type"]=="Admin"){
 									<div class="form-group">
 										<div class="col-lg-9 col-lg-offset-3">
 											<a href="user_entrepreneurs_detail.php?id=<?= $ent_id?>" class="btn btn-default btn-sm">Cancel</a>
-											<button type="submit" class="btn btn-info btn-sm">Submit</button>
+											<button type="submit" id="btn2" name="btn2" class="btn btn-info btn-sm">Submit</button>
 										</div>
 									</div>
 								</fieldset>

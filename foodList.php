@@ -2,15 +2,13 @@
   require "header.php";
   require "menu.php";
   require("config/connection.php");
-  if($_SESSION["Tyepe"]=="Admin"){
+  if($_SESSION["Type"]=="Admin"){
 ?>
 <script>
   $(document).ready(function() {
     $('#table1').dataTable( {
       'lengthMenu': [[10, 25, 50, -1], [10, 25, 50, "All"]],
-      'searching': false,
       'bInfo': false,
-      'dom': '<"top"i>rt<"bottom"flp><"clear">'
     } );
   } );
 </script>
@@ -31,6 +29,7 @@
                     <th>ชื่อ</th>
                     <th>รูปภาพ</th>
                     <th>คำบรรยาย</th>
+                    <th>แคลอรี่</th>
                     <th>ชนิด</th>
                     <th>ชุดอาหาร</th>
                     <th>ส่วนประกอบหลัก</th>
@@ -58,7 +57,7 @@
                           <td><?= $i ?></td>
                           <td align="center"><?= $row["FoodName"] ?></td>
                           <td align="center"><img src="<?= $row["Picture"] ?>" width="150" high="50"></td>
-                          <td width="250px">
+                          <td width="200px">
                             <?php
                               $string = strip_tags($row["Description"]);
               								if (strlen($string) > 400) {
@@ -68,6 +67,7 @@
                               echo $string;
                             ?>
                           </td>
+                          <td align="center"><?= $row["Calorie"] ?></td>
                           <td align="center"><?= $row["CategoryName"] ?></td>
                           <td align="center"><?= $row["CourseName"] ?></td>
                           <td align="center"><?= $row["MainIngredientName"] ?></td>
@@ -97,7 +97,7 @@
 
 <?php
     require"footer.php";
-  } 
+  }
 ?>
 </body>
 </html>

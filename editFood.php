@@ -20,6 +20,11 @@ if($_SESSION["Type"]=="Admin" && $_GET["id"]){
 			document.form.description.focus();
 			return false;
 		}
+		if(document.form.calorie.value == ""){
+			alert("Please input food calorie");
+			document.form.calorie.focus();
+			return false;
+		}
 	  if(document.form.categoryID.value == ""){
 	    alert("Please input categoryID");
 			document.form.categoryID.focus();
@@ -49,8 +54,6 @@ if($_SESSION["Type"]=="Admin" && $_GET["id"]){
 		document.form.submit();
 	}
 	</script>
-	</head>
-	<body>
 		<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 			<div class="row">
 				<div class="col-lg-12">
@@ -75,6 +78,12 @@ if($_SESSION["Type"]=="Admin" && $_GET["id"]){
 										<label for="description" class="col-lg-3 control-label">คำบรรยาย :</label>
 										<div class="col-lg-3">
 											<textarea name="description" rows="4" cols="60" placeholder="Enter description."><?=$row["Description"]?></textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="calorie" class="col-lg-3 control-label">แคลอรี่ :</label>
+										<div class="col-lg-3">
+											<input name="calorie" type="text" class="form-control" id="calorie"  value="<?=$row["Calorie"]?>">
 										</div>
 									</div>
 									<div class="form-group">
