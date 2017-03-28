@@ -13,26 +13,6 @@
   } );
 </script>
 
-        <?php
-          $sql = "SELECT * FROM `Histories`, `Foods`, `Categories`, `Course`, `MainIngredient`
-                  WHERE `Histories`.`FoodID` = `Foods`.`ID`
-                    AND `Foods`.`CategoryID` = `Categories`.`ID`
-                    AND `Foods`.`CourseID` = `Course`.`ID`
-                    AND `Foods`.`MainIngredientID` = `MainIngredient`.`ID`
-                  ORDER BY `FoodName` DESC";
-          $result = $conn->query($sql);
-          $i=1;
-          if($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()){
-
-        ?>
-              { x:<?=$row["ID"]?>, y:<?=$row["MainIngredientID"]?> }
-        <?php
-              $i++;
-            }
-          }
-        ?>
-
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
   <div class="row">
     <div class="col-lg-12">
