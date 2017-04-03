@@ -1,8 +1,7 @@
 <?php
+  session_start();
   require("config/connection.php");
-
   $array = array();
-
   $sql = "SELECT * FROM `Foods`";
   if(!empty($_POST['categories'])||!empty($_POST['ingredient'])||!empty($_POST['course'])){
     $sql = $sql . " WHERE 0";
@@ -28,6 +27,18 @@
   if(!empty($_POST['course'])){
     foreach($_POST['course'] as $check){
       $sql = $sql . " OR `CourseID` = " . $check;
+    }
+  }
+
+  $sql3DayAgo = "SELECT * FROM `Histories` WHERE Date >= DATE_ADD(CURDATE(), INTERVAL -3 DAY) AND `UserID` = " . $_SESSION["ID"];
+  $result3DayAgo = $conn->query($sql3DayAgo);
+  if($result3DayAgo->num_rows > 0) {
+    while($row3DayAgo = $result3DayAgo->fetch_assoc()){
+      if(!empty($_POST['categories'])||!empty($_POST['ingredient'])||!empty($_POST['course'])){
+        $sql = $sql . " AND `ID` != " . $row3DayAgo["FoodID"];
+      }else {
+        $sql = $sql . "WHERE `ID` != " . $row3DayAgo["FoodID"];
+      }
     }
   }
 ?>

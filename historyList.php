@@ -23,49 +23,60 @@
     <div class="col-md-12">
       <div class="panel panel-default">
             <div class="panel-body">
-              <table class="table table-bordered table-hover" id="table1">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>ชื่อ</th>
-                    <th>รูปภาพ</th>
-                    <th>แคลอรี่</th>
-                    <th>ชนิด</th>
-                    <th>ชุดอาหาร</th>
-                    <th>ส่วนประกอบหลัก</th>
-                    <th>วันที่ เวลา</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                    $sql = "SELECT * FROM `Histories`, `Foods`, `Categories`, `Course`, `MainIngredient`
-                            WHERE `Histories`.`FoodID` = `Foods`.`ID`
-                              AND `Foods`.`CategoryID` = `Categories`.`ID`
-                              AND `Foods`.`CourseID` = `Course`.`ID`
-                              AND `Foods`.`MainIngredientID` = `MainIngredient`.`ID`
-                            ORDER BY `Date` DESC";
-                    $result = $conn->query($sql);
-                    $i=1;
-                    if($result->num_rows > 0) {
-                      while($row = $result->fetch_assoc()){
-                  ?>
-                        <tr align="center">
-                          <td><?= $i ?></td>
-                          <td><?= $row["FoodName"] ?></td>
-                          <td><img src="<?= $row["Picture"] ?>" width="150" high="50"></td>
-                          <td><?= $row["Calorie"] ?></td>
-                          <td><?= $row["CategoryName"] ?></td>
-                          <td><?= $row["CourseName"] ?></td>
-                          <td><?= $row["MainIngredientName"] ?></td>
-                          <td><?= $row["Date"] ?></td>
-                        </tr>
-                  <?php
-                        $i++;
-                      }
-                    }
-                  ?>
-                </tbody>
-          </table>
+              <?php
+                $sql = "SELECT * FROM `Histories`, `Foods`, `Categories`, `Course`, `MainIngredient`
+                        WHERE `Histories`.`FoodID` = `Foods`.`ID`
+                          AND `Foods`.`CategoryID` = `Categories`.`ID`
+                          AND `Foods`.`CourseID` = `Course`.`ID`
+                          AND `Foods`.`MainIngredientID` = `MainIngredient`.`ID`
+                          AND `Histories`.`UserID` = " . $_SESSION["ID"] . " ORDER BY `Date` DESC";
+                $result = $conn->query($sql);
+                if($result->num_rows > 0) {
+              ?>
+                  <table class="table table-bordered table-hover" id="table1">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>ชื่อ</th>
+                        <th>รูปภาพ</th>
+                        <th>แคลอรี่</th>
+                        <th>ชนิด</th>
+                        <th>ชุดอาหาร</th>
+                        <th>ส่วนประกอบหลัก</th>
+                        <th>วันที่ เวลา</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                        $i=1;
+                          while($row = $result->fetch_assoc()){
+                      ?>
+                            <tr align="center">
+                              <td><?= $i ?></td>
+                              <td><?= $row["FoodName"] ?></td>
+                              <td><img src="<?= $row["Picture"] ?>" width="150" high="50"></td>
+                              <td><?= $row["Calorie"] ?></td>
+                              <td><?= $row["CategoryName"] ?></td>
+                              <td><?= $row["CourseName"] ?></td>
+                              <td><?= $row["MainIngredientName"] ?></td>
+                              <td><?= $row["Date"] ?></td>
+                            </tr>
+                      <?php
+                            $i++;
+                          }
+                      ?>
+                  </tbody>
+                </table>
+          <?php
+            }else{
+          ?>
+              <div align="center">
+                  <h1>ยังไม่มีรายการที่คุณรับประทาน</h1>
+                  <a href="index.php" class="btn btn-primary btn-sm">สุ่มเมนูอาหาร</a>
+              </div>
+          <?php
+            }
+          ?>
         </div>
       </div>
     </div>

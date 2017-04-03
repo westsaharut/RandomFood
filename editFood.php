@@ -166,7 +166,7 @@ if($_SESSION["Type"]=="Admin" && $_GET["id"]){
 									</div>
 									<div class="form-group">
 										<div class="col-lg-9 col-lg-offset-3">
-											<a href="user_entrepreneurs_detail.php?id=<?= $ent_id?>" class="btn btn-default btn-sm">Cancel</a>
+											<a href="foodList.php" class="btn btn-default btn-sm">Cancel</a>
 											<button type="submit" class="btn btn-info btn-sm">Submit</button>
 										</div>
 									</div>

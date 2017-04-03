@@ -25,18 +25,19 @@
 									<?php
 										}
 									?>
-									&nbsp;<?= $_SESSION["FirstName"]?> <!-- (<= $_SESSION["Type"]?>) -->
+									&nbsp;<?= $_SESSION["FirstName"]?>
 									<span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="profile.php"><i class="fa fa-address-card-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Profile</a></li>
+									<li><a href="editprofile.php"><i class="fa fa-address-card-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Edit Profile</a></li>
 									<li><a href="changePassword.php"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Change Password</a></li>
 									<li><a href="query/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout</a></li>
 								</ul>
 						<?php
 							}else{
 						?>
-								<a href="login.php"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Login</a>
+								<a href="register.php"><i class="fa fa-user-plus fa-lg" aria-hidden="true"></i></use></svg> Register</a> &nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="login.php"><i class="fa fa-sign-in fa-lg" aria-hidden="true"></i> Login</a>
 						<?php
 							}
 						?>

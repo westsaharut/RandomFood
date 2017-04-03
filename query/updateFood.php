@@ -13,7 +13,7 @@
              "',`CategoryID`='" . $categoryID . "',`CourseID`='" . $courseID ."',`MainIngredientID`= " . $mainIngredientID . ", `Calorie`='" . $calorie .
              "' WHERE `ID` = " . $id;
        if($conn->query($sql) === TRUE){
-         echo "<script>alert(\"New record created successfully.\")
+         echo "<script>alert(\"Update successfully.\")
          window.location.href=\"../foodList.php\";</script>";
        }else{
            echo "Error: " . $sql . "<br>" . $conn->error;
@@ -35,10 +35,10 @@
           if($check !== false) {
             if(move_uploaded_file($_FILES["file"]["tmp_name"],"../assets/img/".$pic_name)){
               $sql = "UPDATE `Foods` SET `FoodName`='" . $name . "',`Description`='" . $description .
-                     "',`CategoryID`='" . $categoryID . "',`CourseID`='" . $courseID ."',`MainIngredientID`= " . $mainIngredientID . ",`Picture`='" . $target_file . ", `Calorie`='" . $calorie .
+                     "',`CategoryID`='" . $categoryID . "',`CourseID`='" . $courseID ."',`MainIngredientID`= " . $mainIngredientID . ",`Picture`='" . $target_file . "', `Calorie`='" . $calorie .
                      "' WHERE `ID` = " . $id;
                 if($conn->query($sql) === TRUE){
-                  echo "<script>alert(\"New record created successfully.\")
+                  echo "<script>alert(\"Update successfully.\")
                   window.location.href=\"../foodList.php\";</script>";
                 }else {
                     echo "Error: " . $sql . "<br>" . $conn->error;

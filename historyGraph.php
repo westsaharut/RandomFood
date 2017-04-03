@@ -11,7 +11,28 @@
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-body">
-          <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+          <?php
+            $sql = $sql = "SELECT *, SUM(`Foods`.`Calorie`) AS `Today`
+                    FROM `Histories`, `Foods`
+                    WHERE `Histories`.`FoodID` = `Foods`.`ID`
+                    AND `Histories`.`UserID` = " . $_SESSION["ID"] .
+                    " GROUP BY YEAR(`Histories`.`Date`), MONTH(`Histories`.`Date`), DAY(`Histories`.`Date`)
+                    ORDER BY `Histories`.`Date` DESC";
+
+              $result = $conn->query($sql);
+              if($result->num_rows > 0) {
+          ?>
+                <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+          <?php
+              }else{
+          ?>
+                <div align="center">
+                    <h1>ยังไม่มีรายการที่คุณรับประทาน</h1>
+                    <a href="index.php" class="btn btn-primary btn-sm">สุ่มเมนูอาหาร</a>
+                </div>
+          <?php
+              }
+          ?>
         </div>
       </div>
     </div>
@@ -50,24 +71,14 @@
         colorByPoint: true,
         data: [
           <?php
-            $sql = "SELECT *, SUM(`Foods`.`Calorie`) AS `Today`
-                    FROM `Histories`, `Foods`
-                    WHERE `Histories`.`FoodID` = `Foods`.`ID`
-                    GROUP BY YEAR(`Histories`.`Date`), MONTH(`Histories`.`Date`), DAY(`Histories`.`Date`)
-                    ORDER BY `Histories`.`Date` DESC";
-            $result = $conn->query($sql);
-            $i=1;
-            if($result->num_rows > 0) {
-              while($row = $result->fetch_assoc()){
+            while($row = $result->fetch_assoc()){
           ?>
-            {
-              name: '<?= date("d M Y", strtotime($row["Date"]))?>',
-              y: <?=$row["Today"]?>,
-              drilldown: '<?=$row["Date"]?>'
-            },
+              {
+                name: '<?= date("d M Y", strtotime($row["Date"]))?>',
+                y: <?=$row["Today"]?>,
+                drilldown: '<?=$row["Date"]?>'
+              },
           <?php
-                $i++;
-              }
             }
           ?>
       ]

@@ -18,6 +18,7 @@
         $_SESSION["Type"]   = $row["Type"];
         $_SESSION["Tel"]   = $row["Tel"];
         $_SESSION["Email"]   = $row["Email"];
+        $_SESSION["Password"]   = $row["Password"];
 
         if ($_SESSION["Type"]=="Admin") {
           # code...
