@@ -33,14 +33,21 @@
   $sql3DayAgo = "SELECT * FROM `Histories` WHERE Date >= DATE_ADD(CURDATE(), INTERVAL -3 DAY) AND `UserID` = " . $_SESSION["ID"];
   $result3DayAgo = $conn->query($sql3DayAgo);
   if($result3DayAgo->num_rows > 0) {
+    $i=0;
     while($row3DayAgo = $result3DayAgo->fetch_assoc()){
       if(!empty($_POST['categories'])||!empty($_POST['ingredient'])||!empty($_POST['course'])){
         $sql = $sql . " AND `ID` != " . $row3DayAgo["FoodID"];
-      }else {
-        $sql = $sql . "WHERE `ID` != " . $row3DayAgo["FoodID"];
+      }else{
+        if($i==0){
+          $sql = $sql . " WHERE `ID` != " . $row3DayAgo["FoodID"];
+        }else{
+          $sql = $sql . " AND `ID` != " . $row3DayAgo["FoodID"];
+        }
+        $i++;
       }
     }
   }
+  echo $sql;
 ?>
 
 <?php

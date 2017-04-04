@@ -17,8 +17,7 @@
                     WHERE `Histories`.`FoodID` = `Foods`.`ID`
                     AND `Histories`.`UserID` = " . $_SESSION["ID"] .
                     " GROUP BY YEAR(`Histories`.`Date`), MONTH(`Histories`.`Date`), DAY(`Histories`.`Date`)
-                    ORDER BY `Histories`.`Date` DESC";
-
+                      ORDER BY `Histories`.`Date` DESC";
               $result = $conn->query($sql);
               if($result->num_rows > 0) {
           ?>

@@ -7,7 +7,7 @@
   $email = $_POST["email"];
   $tel = $_POST["tel"];
   $sql = "INSERT INTO `Users`(`UserName`, `Password`, `FirstName`, `LastName`, `Tel`, `Email`, `Type`)
-          VALUES ('". $username ."', '". $password ."', '". $firstname ."', '". $lastname ."', '". $email ."', '". $tel ."', 'User')";
+          VALUES ('". $username ."', '". $password ."', '". $firstname ."', '". $lastname ."', '". $tel ."', '". $email ."', 'User')";
   if($conn->query($sql) === TRUE){
     echo "<script>alert(\"New record created successfully.\")
     window.location.href=\"../login.php\";</script>";
