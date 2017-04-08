@@ -47,7 +47,6 @@
       }
     }
   }
-  echo $sql;
 ?>
 
 <?php
@@ -89,11 +88,25 @@
                 }
               }
           ?>
-          <div class="form-group">
-            <div class="col-lg-9 col-lg-offset-5">
-              <button type="submit" class="btn btn-success btn-sm" onClick="return confirm('คุณต้องการเพิ่มเมนูอาหารเข้าสู่ประวัติของคุณ ?');">Eat it!</button>
-            </div>
-          </div>
+          <?php
+            if(empty($_SESSION["Type"])){
+          ?>
+              <div class="form-group">
+                <div class="col-lg-9 col-lg-offset-5">
+                  <a href="login.php" class="btn btn-info btn-sm">Login to save history</a>
+                </div>
+              </div>
+          <?php
+            }else if($_SESSION["Type"]=="User"){
+          ?>
+              <div class="form-group">
+                <div class="col-lg-9 col-lg-offset-5">
+                  <button type="submit" class="btn btn-success btn-sm" onClick="return confirm('คุณต้องการเพิ่มเมนูอาหารเข้าสู่ประวัติของคุณ ?');">Eat it!</button>
+                </div>
+              </div>
+          <?php
+            }
+          ?>
         </form>
       </div>
     </div>
