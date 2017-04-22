@@ -47,7 +47,7 @@
                     $sql = "SELECT *, `Foods`.`ID` AS `FoodID` FROM `Foods`, `Categories`, `Course`, `MainIngredient` WHERE `Foods`.`CategoryID` = `Categories`.`ID`
                             AND `Foods`.`CourseID` = `Course`.`ID`
                             AND `Foods`.`MainIngredientID` = `MainIngredient`.`ID`
-                            ORDER BY `FoodName` DESC";
+                            ORDER BY `FoodName` ASC";
                     $result = $conn->query($sql);
                     $i=1;
                     if($result->num_rows > 0) {

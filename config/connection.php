@@ -1,7 +1,7 @@
 <?php
   $servername = "localhost";
   $username = "root";
-  $password = "0804221131";
+  $password = "";
   $dbname = "SEGroupProject";
   // $servername = "139.59.112.237:3306";
   // $username = "root";
