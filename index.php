@@ -105,7 +105,7 @@
                 </div>
                 <div class="form-group">
 									<div class="col-lg-9 col-lg-offset-5">
-										<button id="btn1" type="button" class="btn btn-success btn-sm" name="button">Random</button>
+										<button id="btn1" type="button" class="btn btn-success btn-sm" name="button">Advice</button>
 									</div>
 								</div>
               </div>

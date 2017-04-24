@@ -6,13 +6,24 @@
   $courseID = $_POST["courseID"];
   $mainIngredientID = $_POST["mainIngredientID"];
   $calorie = $_POST["calorie"];
+  $cluster = "";
+
+  if($categoryID <= 1){
+    if($mainIngredientID <=3){
+      $cluster = "cluster 3";
+    }else if($mainIngredientID >3){
+      $cluster = "cluster 0";
+    }
+  }else if($categoryID >1){
+      $cluster = "cluster2";
+  }
 
   if($_FILES['file']["error"]){
     echo "<script>alert(\"Add food Error!!.\")
     window.location.href=\"..addFood.php\";</script>";
   }else{
-    $sql = "INSERT INTO `Foods` (`FoodName`, `Description`, `CategoryID`, `CourseID`, `MainIngredientID`, `Calorie`)
-            VALUES ('" . $name . "', '" . $description . "', '" . $categoryID ."', ' " . $courseID . "', '" . $mainIngredientID . "', '" . $calorie . "')";
+    $sql = "INSERT INTO `Foods` (`FoodName`, `Description`, `CategoryID`, `CourseID`, `MainIngredientID`, `Calorie`, `Cluster`)
+            VALUES ('" . $name . "', '" . $description . "', '" . $categoryID ."', ' " . $courseID . "', '" . $mainIngredientID . "', '" . $calorie . "', '" . $cluster . "')";
     if($conn->query($sql) === TRUE){
       $selectLastID = "SELECT `ID` FROM `Foods` ORDER BY `ID` DESC LIMIT 1";
       $resultLastID = $conn->query($selectLastID);
